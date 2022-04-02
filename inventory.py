@@ -148,7 +148,7 @@ class User:
         cursor = db.cursor(dictionary=True)
         success = True
 
-        tablesToDeleteFrom = ["users", "shipping_info"]
+        tablesToDeleteFrom = ["shipping_info", "payment_info", "users"]
 
         for table in tablesToDeleteFrom:
             query = f"DELETE FROM {table} WHERE userID=\"{self.userID}\""
