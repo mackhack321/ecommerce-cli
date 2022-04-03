@@ -220,10 +220,10 @@ def driver():
         
         else:
             print("==========[ eCommerce CLI ]=========")
-            print("|| 1. Logout                      ||")
-            print("|| 2. Delete account              ||")
-            print("|| 3. Manage shipping information ||")
-            print("|| 4. Manage payment information  ||")
+            print("|| 1. Manage shipping information ||")
+            print("|| 2. Manage payment information  ||")
+            print("|| L. Logout                      ||")
+            print("|| D. Delete account              ||")
             print("|| X. Exit                        ||")
             print("====================================\n")
 
@@ -231,18 +231,6 @@ def driver():
             print()
 
             if choice == "1":
-                print(f"Goodbye, {user.firstname}\n")
-                user.logout()
-
-            if choice == "2":
-                sure = input("Are you sure? (y/n) :: ").lower()
-                if sure == "y":
-                    if user.delete():
-                        print("Account successfully deleted\n")
-                    else:
-                        print("There was an error during account deletion\n")
-
-            if choice == "3":
                 print("==========[ eCommerce CLI ]=========")
                 print("|| 1. View shipping information   ||")
                 print("|| 2. Set shipping information    ||")
@@ -275,7 +263,7 @@ def driver():
                     else:
                         print("There was an error during shipping information setting\n")
 
-            if choice == "4":
+            if choice == "2":
                 print("==========[ eCommerce CLI ]=========")
                 print("|| 1. View payment information    ||")
                 print("|| 2. Set payment information     ||")
@@ -305,6 +293,18 @@ def driver():
                         print("Payment information successfully set\n")
                     else:
                         print("There was an error during payment information setting\n")
+
+            if choice == "l":
+                print(f"Goodbye, {user.firstname}\n")
+                user.logout()
+
+            if choice == "d":
+                sure = input("Are you sure? (y/n) :: ").lower()
+                if sure == "y":
+                    if user.delete():
+                        print("Account successfully deleted\n")
+                    else:
+                        print("There was an error during account deletion\n")    
 
 if __name__ == "__main__":
     driver()
