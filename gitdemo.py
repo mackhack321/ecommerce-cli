@@ -15,3 +15,5 @@ greetme(name)
 # - show how to pull (sync button at bottom)
 # - commit message best practices
 # - more small commits > one big commit
+
+# - discuss .env, db.sql, dictionary cursor, how to add to driver
