@@ -201,10 +201,10 @@ def driver():
                 password = input("Enter password :: ")
 
                 if user.login(username, password):
-                    print(f"Hello, {user.firstname}!\n")
+                    print(f"\nHello, {user.firstname} {user.lastname}!\n")
                 
                 else:
-                    print("Invalid credentials.\n")
+                    print("\nInvalid credentials.\n")
             
             if choice == "2":
                 username = input("Enter username :: ")
