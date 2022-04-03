@@ -22,15 +22,15 @@ class User:
     def setUserID(self, id):
         self.userID = id
     
-    def setShippingInformation(self, address, pobox):
+    def setShippingInformation(self, address, pobox, city, state, zip):
         success = True
         db = openDBConnection()
         cursor = db.cursor(dictionary=True)
 
         # check if the user already has shipping information
         if not self.getShippingInformation(): # need to make new entry in table
-            query = "INSERT INTO shipping_info (userID, address, pobox) VALUES (%s, %s, %s)"
-            data = (str(self.userID), address, pobox)
+            query = "INSERT INTO shipping_info (userID, address, pobox, city, state, zip) VALUES (%s, %s, %s, %s, %s, %s)"
+            data = (str(self.userID), address, pobox, city, state, zip)
 
             try:
                 cursor.execute(query, data)
@@ -39,7 +39,7 @@ class User:
                 success = False
         
         else: # just update the existing info
-            query = f"UPDATE shipping_info SET address=%s, pobox=%s WHERE userID=%s"
+            query = f"UPDATE shipping_info SET address=%s, pobox=%s, city=%s, state=%s, zip=%s WHERE userID=%s"
             data = (address, pobox, str(self.userID))
 
             try:
@@ -258,13 +258,19 @@ def driver():
                         print("You have no shipping information\n")
                     else:
                         print(f"Address: {info[0]['address']}")
-                        print(f"PO Box: {info[0]['pobox']}\n")
+                        print(f"PO Box: {info[0]['pobox']}")
+                        print(f"City: {info[0]['city']}")
+                        print(f"State: {info[0]['state']}")
+                        print(f"Zip Code: {info[0]['zip']}\n")
                 
                 if choice == "2":
                     address = input("Enter address :: ")
                     pobox = input("Enter PO box (\"none\" for no PO box) :: ")
+                    city = input("Enter city :: ")
+                    state = input("Enter state :: ")
+                    zip = input("Enter zip code :: ")
 
-                    if user.setShippingInformation(address, pobox):
+                    if user.setShippingInformation(address, pobox, city, state, zip):
                         print("Shipping information successfully set\n")
                     else:
                         print("There was an error during shipping information setting\n")
