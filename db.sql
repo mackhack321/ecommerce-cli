@@ -32,7 +32,7 @@ CREATE TABLE `payment_info` (
   PRIMARY KEY (`paymentID`),
   KEY `userID` (`userID`),
   CONSTRAINT `payment_info_ibfk_1` FOREIGN KEY (`userID`) REFERENCES `users` (`userID`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -57,6 +57,9 @@ CREATE TABLE `shipping_info` (
   `userID` int(11) NOT NULL,
   `address` varchar(50) NOT NULL,
   `pobox` varchar(50) NOT NULL,
+  `city` varchar(50) NOT NULL,
+  `state` varchar(50) NOT NULL,
+  `zip` int(11) NOT NULL,
   PRIMARY KEY (`shippingID`),
   KEY `userID` (`userID`),
   CONSTRAINT `shipping_info_ibfk_1` FOREIGN KEY (`userID`) REFERENCES `users` (`userID`)
@@ -69,7 +72,7 @@ CREATE TABLE `shipping_info` (
 
 LOCK TABLES `shipping_info` WRITE;
 /*!40000 ALTER TABLE `shipping_info` DISABLE KEYS */;
-INSERT INTO `shipping_info` VALUES (1,4,'123 street ave','none');
+INSERT INTO `shipping_info` VALUES (1,4,'123 street ave','none','brentwood','tn',37064);
 /*!40000 ALTER TABLE `shipping_info` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -96,7 +99,7 @@ CREATE TABLE `users` (
 
 LOCK TABLES `users` WRITE;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
-INSERT INTO `users` VALUES (1,'mack','stanley','mackhack321','password123'),(4,'bob','jones','bob','123');
+INSERT INTO `users` VALUES (4,'bob','jones','bob','123');
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -109,4 +112,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-04-02 16:10:56
+-- Dump completed on 2022-04-03 14:55:45
