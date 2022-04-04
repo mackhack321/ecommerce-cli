@@ -5,7 +5,8 @@ def greetme(name):
 print("Welcome to my greeter program.")
 name = input("What is your name? ")
 print("hey")
-print("Mack has a big brain!")
+print("This demo will allow you to type in your name")
+print("enjoy!")
 greetme(name)
 
 # git demo
