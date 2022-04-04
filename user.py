@@ -105,7 +105,34 @@ class User:
         return result
     
     def getOrderHistory(self):
-        ...
+        db = openDBConnection()
+        cursor = db.cursor(dictionary=True)
+
+        query = "SELECT * FROM order_history WHERE userID=%s"
+        data = (str(self.userID), )
+
+        cursor.execute(query, data)
+        result = cursor.fetchall()
+
+        hist = []
+
+        for order in result:
+            movieQuery = "SELECT * FROM movies WHERE movieID=%s"
+            movieData = (order['movieID'], )
+
+            cursor.execute(movieQuery, movieData)
+            movie = cursor.fetchall()
+
+            title = movie[0]['title']
+            quantity = order['quantity']
+            price = movie[0]['price']
+            date=order['date']
+            hist.append({"title" : title, "quantity" : quantity, "price" : price, "date" : date})
+
+        cursor.close()
+        db.close()
+
+        return hist
     
     def login(self, username, password):
         db = openDBConnection()

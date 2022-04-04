@@ -40,6 +40,7 @@ def driver():
             print("==========[ eCommerce CLI ]=========")
             print("|| 1. Manage shipping information ||")
             print("|| 2. Manage payment information  ||")
+            print("|| 3. View order history          ||")
             print("|| L. Logout                      ||")
             print("|| D. Delete account              ||")
             print("|| X. Exit                        ||")
@@ -111,6 +112,18 @@ def driver():
                         print("Payment information successfully set\n")
                     else:
                         print("There was an error during payment information setting\n")
+
+            if choice == "3":
+                hist = user.getOrderHistory()
+                if not hist:
+                    print("You have no order history\n")
+                else:
+                    totalPrice = 0.0
+                    for entry in hist:
+                        print(f"Title: {entry['title']}\nQuantity: {entry['quantity']}\nPrice: {entry['price']}\nDate: {entry['date']}\n")
+                        totalPrice += float(entry['price']) * int(entry['quantity'])
+                    formatPrice = "{:.2f}".format(totalPrice)
+                    print(f"Total order price: {formatPrice}\n")
 
             if choice == "l":
                 print(f"Goodbye, {user.firstname}\n")
