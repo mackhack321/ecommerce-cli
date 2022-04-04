@@ -16,6 +16,93 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
+-- Table structure for table `cart`
+--
+
+DROP TABLE IF EXISTS `cart`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `cart` (
+  `cartID` int(11) NOT NULL AUTO_INCREMENT,
+  `userID` int(11) NOT NULL,
+  `movieID` int(11) NOT NULL,
+  `quantity` int(11) NOT NULL,
+  PRIMARY KEY (`cartID`),
+  KEY `userID` (`userID`),
+  KEY `movieID` (`movieID`),
+  CONSTRAINT `cart_ibfk_1` FOREIGN KEY (`userID`) REFERENCES `users` (`userID`),
+  CONSTRAINT `cart_ibfk_2` FOREIGN KEY (`movieID`) REFERENCES `movies` (`movieID`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `cart`
+--
+
+LOCK TABLES `cart` WRITE;
+/*!40000 ALTER TABLE `cart` DISABLE KEYS */;
+/*!40000 ALTER TABLE `cart` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `movies`
+--
+
+DROP TABLE IF EXISTS `movies`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `movies` (
+  `movieID` int(11) NOT NULL AUTO_INCREMENT,
+  `title` varchar(50) NOT NULL,
+  `genre` varchar(50) NOT NULL,
+  `director` varchar(50) NOT NULL,
+  `rating` varchar(10) NOT NULL,
+  `year` int(11) NOT NULL,
+  `price` varchar(10) NOT NULL,
+  PRIMARY KEY (`movieID`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `movies`
+--
+
+LOCK TABLES `movies` WRITE;
+/*!40000 ALTER TABLE `movies` DISABLE KEYS */;
+/*!40000 ALTER TABLE `movies` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `order_history`
+--
+
+DROP TABLE IF EXISTS `order_history`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `order_history` (
+  `orderID` int(11) NOT NULL AUTO_INCREMENT,
+  `userID` int(11) NOT NULL,
+  `movieID` int(11) NOT NULL,
+  `quantity` int(11) NOT NULL,
+  `date` varchar(50) NOT NULL,
+  PRIMARY KEY (`orderID`),
+  KEY `userID` (`userID`),
+  KEY `movieID` (`movieID`),
+  CONSTRAINT `order_history_ibfk_1` FOREIGN KEY (`userID`) REFERENCES `users` (`userID`),
+  CONSTRAINT `order_history_ibfk_2` FOREIGN KEY (`movieID`) REFERENCES `movies` (`movieID`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `order_history`
+--
+
+LOCK TABLES `order_history` WRITE;
+/*!40000 ALTER TABLE `order_history` DISABLE KEYS */;
+/*!40000 ALTER TABLE `order_history` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `payment_info`
 --
 
@@ -41,7 +128,7 @@ CREATE TABLE `payment_info` (
 
 LOCK TABLES `payment_info` WRITE;
 /*!40000 ALTER TABLE `payment_info` DISABLE KEYS */;
-INSERT INTO `payment_info` VALUES (1,4,49391284,'05/22',37064,123);
+INSERT INTO `payment_info` VALUES (1,4,348975498,'04/04',37064,284);
 /*!40000 ALTER TABLE `payment_info` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -112,4 +199,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-04-03 14:55:45
+-- Dump completed on 2022-04-04 16:02:32
