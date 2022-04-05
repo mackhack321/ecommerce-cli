@@ -8,6 +8,7 @@ print("hey")
 print("This demo will allow you to type in your name")
 print("enjoy!")
 print("Jade parker")
+print("Philip Haggard")
 greetme(name)
 print("enjoy starbucks")
 
