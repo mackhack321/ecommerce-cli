@@ -11,6 +11,8 @@ greetme(name)
 
 # git demo
 # - initial config name/email
+#       git config --global user.name [your name]
+#       git config --global user.email [your email]
 # - show how to stage and commit
 # - show what happens when you stage and then keep editing
 # - show how to undo commit
