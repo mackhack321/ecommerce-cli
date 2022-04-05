@@ -7,6 +7,7 @@ name = input("What is your name? ")
 print("hey")
 print("This demo will allow you to type in your name")
 print("enjoy!")
+print("Jade parker")
 greetme(name)
 
 # git demo
