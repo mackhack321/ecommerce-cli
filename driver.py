@@ -1,4 +1,5 @@
 from user import User
+from inventory import Inventory
 
 def driver():
     user = User()
