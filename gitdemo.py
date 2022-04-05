@@ -11,6 +11,7 @@ print("Jade parker")
 print("Philip Haggard")
 greetme(name)
 print("enjoy starbucks")
+print("Terminal")
 
 # git demo
 # - initial config name/email
