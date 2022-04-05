@@ -9,6 +9,7 @@ print("This demo will allow you to type in your name")
 print("enjoy!")
 print("Jade parker")
 greetme(name)
+print("enjoy starbucks")
 
 # git demo
 # - initial config name/email
