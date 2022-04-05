@@ -2,7 +2,7 @@ import mysql.connector as sql
 from os import getenv
 from dotenv import load_dotenv
 
-load_dotenv()
+load_dotenv(override=True)
 
 def openDBConnection():
     return sql.connect(
