@@ -6,7 +6,7 @@ load_dotenv()
 
 def openDBConnection():
     return sql.connect(
-        user=getenv('USERNAME'),
+        user=getenv('NAME'),
         password=getenv('PASS'),
         host=getenv('HOST'),
         database=getenv('DB')
