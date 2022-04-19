@@ -1,8 +1,11 @@
 from user import User
 from inventory import Inventory
+from cart import Cart
 
 def driver():
     user = User()
+    inv = Inventory()
+    cart = Cart()
     choice = "0"
     while choice != "x":
         if not user.isLoggedIn:
@@ -42,6 +45,9 @@ def driver():
             print("|| 1. Manage shipping information ||")
             print("|| 2. Manage payment information  ||")
             print("|| 3. View order history          ||")
+            print("|| 4. View inventory              ||")
+            print("|| 5. Manage cart                 ||")
+            print("|| 6. Checkout                    ||")
             print("|| L. Logout                      ||")
             print("|| D. Delete account              ||")
             print("|| X. Exit                        ||")
@@ -126,6 +132,56 @@ def driver():
                     formatPrice = "{:.2f}".format(totalPrice)
                     print(f"Total order price: {formatPrice}\n")
 
+            if choice == "4":
+                for item in inv.items:
+                    print(f"ID: {item.id} | Title: {item.title}\n\tGenre: {item.genre} | Director: {item.director} | Rating: {item.rating} | Year: {item.year} | Price: {item.price} | Quantity: {item.quantity}")
+                print()
+
+            if choice == "5":
+                print("==========[ eCommerce CLI ]=========")
+                print("|| 1. View cart                   ||")
+                print("|| 2. Add item to cart            ||")
+                print("|| 3. Remove item from cart       ||")
+                print("|| 4. Go back                     ||")
+                print("====================================\n")
+
+                choice = input("Enter your choice :: ").lower()
+                print()
+
+                if choice == "1":
+                    items = cart.getCart(user.userID)
+                    if not items:
+                        print("Your cart is empty\n")
+                    else:
+                        for item in items:
+                            print(f"ID: {item['movieID']} | Title: {item['title']} | Quantity: {item['quantity']}")
+
+                if choice == "2":
+                    id = input("Enter movie ID :: ")
+                    qty = input("Enter quantity :: ")
+
+                    if cart.addItem(user.userID, id, qty):
+                        print("Successfully added to cart\n")
+                    else:
+                        print("Failed to add to cart\n")
+
+                if choice == "3":
+                    id = input("Enter movie ID :: ")
+
+                    if cart.removeItem(user.userID, id):
+                        print("Successfully removed from cart\n")
+                    else:
+                        print("Failed to remove from cart\n")
+
+            if choice == "6":
+                if not cart.getCart(user.userID):
+                    print("You cannot checkout with an empty cart\n")
+                else:
+                    if cart.checkout(user, inv):
+                        print("Successfully checked out\n")
+                    else:
+                        print("Failed to checkout\n")
+        
             if choice == "l":
                 print(f"Goodbye, {user.firstname}\n")
                 user.logout()
