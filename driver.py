@@ -177,7 +177,7 @@ def driver():
                     if cart.checkout(user, inv):
                         print("Successfully checked out\n")
                     else:
-                        print("Failed to checkout\n")
+                        print("Failed to checkout. Are you trying to buy more movies than are in stock?\n")
         
             if choice == "l":
                 print(f"Goodbye, {user.firstname}\n")
