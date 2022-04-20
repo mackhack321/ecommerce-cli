@@ -101,7 +101,7 @@ CREATE TABLE `order_history` (
 
 LOCK TABLES `order_history` WRITE;
 /*!40000 ALTER TABLE `order_history` DISABLE KEYS */;
-INSERT INTO `order_history` VALUES (1,4,2,2,'4/4/22'),(2,4,1,1,'4/4/22'),(3,5,1,2,'4/4/22'),(4,4,4,3,'4/5/22'),(5,4,1,2,'04/19/2022'),(6,4,4,9898,'04/19/2022'),(7,4,4,435242,'04/19/2022'),(8,4,2,3,'04/19/2022');
+INSERT INTO `order_history` VALUES (1,4,2,2,'4/4/22'),(2,4,1,1,'4/4/22'),(3,5,1,2,'4/4/22'),(4,4,4,3,'4/5/22'),(5,4,1,2,'04/19/2022'),(8,4,2,3,'04/19/2022');
 /*!40000 ALTER TABLE `order_history` ENABLE KEYS */;
 UNLOCK TABLES;
 
