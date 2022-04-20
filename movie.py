@@ -12,4 +12,5 @@ class Movie:
         self.price = price
         self.quantity = quantity
 
-    
+    def canRemoveStock(self, qty): 
+        return self.quantity >= qty
