@@ -125,12 +125,8 @@ def driver():
                 if not hist:
                     print("You have no order history\n")
                 else:
-                    totalPrice = 0.0
                     for entry in hist:
                         print(f"Title: {entry['title']}\nQuantity: {entry['quantity']}\nPrice: {entry['price']}\nDate: {entry['date']}\n")
-                        totalPrice += float(entry['price']) * int(entry['quantity'])
-                    formatPrice = "{:.2f}".format(totalPrice)
-                    print(f"Total order price: {formatPrice}\n")
 
             if choice == "4":
                 for item in inv.items:
@@ -155,6 +151,7 @@ def driver():
                     else:
                         for item in items:
                             print(f"ID: {item['movieID']} | Title: {item['title']} | Quantity: {item['quantity']}")
+                        print()
 
                 if choice == "2":
                     id = input("Enter movie ID :: ")
