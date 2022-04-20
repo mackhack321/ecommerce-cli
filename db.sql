@@ -1,8 +1,8 @@
--- MySQL dump 10.19  Distrib 10.3.32-MariaDB, for debian-linux-gnu (x86_64)
+-- MySQL dump 10.19  Distrib 10.3.34-MariaDB, for debian-linux-gnu (x86_64)
 --
 -- Host: localhost    Database: ecommerce_cli
 -- ------------------------------------------------------
--- Server version	10.3.32-MariaDB-0ubuntu0.20.04.1
+-- Server version	10.3.34-MariaDB-0ubuntu0.20.04.1
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -32,7 +32,7 @@ CREATE TABLE `cart` (
   KEY `movieID` (`movieID`),
   CONSTRAINT `cart_ibfk_1` FOREIGN KEY (`userID`) REFERENCES `users` (`userID`),
   CONSTRAINT `cart_ibfk_2` FOREIGN KEY (`movieID`) REFERENCES `movies` (`movieID`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -61,7 +61,7 @@ CREATE TABLE `movies` (
   `price` varchar(10) NOT NULL,
   `quantity` int(11) NOT NULL,
   PRIMARY KEY (`movieID`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -70,6 +70,7 @@ CREATE TABLE `movies` (
 
 LOCK TABLES `movies` WRITE;
 /*!40000 ALTER TABLE `movies` DISABLE KEYS */;
+INSERT INTO `movies` VALUES (1,'the incredibles','action','bob benson','G',2012,'5.50',3),(2,'a very adult movie','adventure','pam jones','R',2000,'6.75',7),(3,'back to the future','mystery','steve jones','PG-13',1980,'10.00',13),(4,'cars','adventure','some disney guy','G',1990,'3.00',14);
 /*!40000 ALTER TABLE `movies` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -91,7 +92,7 @@ CREATE TABLE `order_history` (
   KEY `movieID` (`movieID`),
   CONSTRAINT `order_history_ibfk_1` FOREIGN KEY (`userID`) REFERENCES `users` (`userID`),
   CONSTRAINT `order_history_ibfk_2` FOREIGN KEY (`movieID`) REFERENCES `movies` (`movieID`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -100,6 +101,7 @@ CREATE TABLE `order_history` (
 
 LOCK TABLES `order_history` WRITE;
 /*!40000 ALTER TABLE `order_history` DISABLE KEYS */;
+INSERT INTO `order_history` VALUES (1,4,2,2,'4/4/22'),(2,4,1,1,'4/4/22'),(3,5,1,2,'4/4/22'),(4,4,4,3,'4/5/22'),(5,4,1,2,'04/19/2022'),(6,4,4,9898,'04/19/2022'),(7,4,4,435242,'04/19/2022'),(8,4,2,3,'04/19/2022');
 /*!40000 ALTER TABLE `order_history` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -200,4 +202,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-04-04 17:14:19
+-- Dump completed on 2022-04-19 20:36:14
