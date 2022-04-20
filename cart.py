@@ -59,6 +59,11 @@ class Cart:
         cartItems = cursor.fetchall()
 
         for item in cartItems:
+            # remove stuff from inventory
+            if not inventory.removeItemStock(item['movieID'], item['quantity']):
+                success = False
+                return success # stop and throw error if you try and check out more than the inventory has
+
             # add stuff to user's order history
             query = "INSERT INTO order_history (userID, movieID, quantity, date) VALUES (%s, %s, %s, %s)"
             data = (user.userID, item['movieID'], item['quantity'], date.today().strftime("%m/%d/%Y"))
@@ -68,11 +73,6 @@ class Cart:
                 db.commit()
             except:
                 success = False
-
-            # remove stuff from inventory
-            if not inventory.removeItemStock(item['movieID'], item['quantity']):
-                success = False
-                return success # stop and throw error if you try and check out more than the inventory has
 
             # remove stuff from cart
             query = "DELETE FROM cart WHERE userID=%s"
@@ -114,3 +114,29 @@ class Cart:
         db.close()
 
         return interpolatedData
+
+    def getTotalCost(self, userID):
+        db = openDBConnection()
+        cursor = db.cursor(dictionary=True)
+
+        query = "SELECT * FROM cart WHERE userID=%s"
+        data = (userID, )
+
+        cursor.execute(query, data)
+
+        data = cursor.fetchall()
+        totalPrice = 0.0
+
+        for entry in data:
+            query = "SELECT * FROM movies WHERE movieID=%s"
+            data = (entry['movieID'], )
+
+            cursor.execute(query, data)
+            movie = cursor.fetchall()
+
+            totalPrice += float(movie[0]['price']) * int(entry['quantity'])
+
+        cursor.close()
+        db.close()
+
+        return totalPrice
