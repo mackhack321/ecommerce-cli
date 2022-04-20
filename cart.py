@@ -39,6 +39,9 @@ class Cart:
         except:
             success = False
 
+        if cursor.rowcount == 0: # nothing was deleted, means incorrect ID
+            success = False
+
         cursor.close()
         db.close()
         
@@ -67,7 +70,9 @@ class Cart:
                 success = False
 
             # remove stuff from inventory
-            inventory.removeItemStock(item['movieID'], item['quantity'])
+            if not inventory.removeItemStock(item['movieID'], item['quantity']):
+                success = False
+                return success # stop and throw error if you try and check out more than the inventory has
 
             # remove stuff from cart
             query = "DELETE FROM cart WHERE userID=%s"
