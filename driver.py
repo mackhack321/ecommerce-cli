@@ -151,6 +151,8 @@ def driver():
                     else:
                         for item in items:
                             print(f"ID: {item['movieID']} | Title: {item['title']} | Quantity: {item['quantity']}")
+                        formattedTotal = "{:.2f}".format(cart.getTotalCost(user.userID))
+                        print(f"\nTotal price: ${formattedTotal}")
                         print()
 
                 if choice == "2":
