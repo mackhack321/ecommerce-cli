@@ -34,6 +34,8 @@ class Inventory:
         return success
 
     def update(self):
+        self.items = []
+
         db = openDBConnection()
         cursor = db.cursor(dictionary=True)
 
