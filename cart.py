@@ -94,8 +94,18 @@ class Cart:
         cursor.execute(query, data)
 
         data = cursor.fetchall()
+        interpolatedData = []
+
+        for entry in data:
+            query = "SELECT * FROM movies WHERE movieID=%s"
+            data = (entry['movieID'], )
+
+            cursor.execute(query, data)
+            movie = cursor.fetchall()
+
+            interpolatedData.append({"movieID": entry['movieID'], "title": movie[0]['title'], "quantity": entry['quantity']})
 
         cursor.close()
         db.close()
 
-        return data
+        return interpolatedData
