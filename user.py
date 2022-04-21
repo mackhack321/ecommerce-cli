@@ -153,7 +153,6 @@ class User:
         db.close()
 
         return success
-
     
     def login(self, username, password):
         db = openDBConnection()
