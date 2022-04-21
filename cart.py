@@ -1,5 +1,4 @@
 from dbOpenConn import openDBConnection
-from datetime import date
 
 
 class Cart:
@@ -65,14 +64,9 @@ class Cart:
                 return success # stop and throw error if you try and check out more than the inventory has
 
             # add stuff to user's order history
-            query = "INSERT INTO order_history (userID, movieID, quantity, date) VALUES (%s, %s, %s, %s)"
-            data = (user.userID, item['movieID'], item['quantity'], date.today().strftime("%m/%d/%Y"))
-
-            try:
-                cursor.execute(query, data)
-                db.commit()
-            except:
+            if not user.addOrderToHistory(item['movieID'], item['quantity']):
                 success = False
+                return success
 
             # remove stuff from cart
             query = "DELETE FROM cart WHERE userID=%s"
