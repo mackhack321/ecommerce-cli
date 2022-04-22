@@ -14,3 +14,4 @@ class Movie:
 
     def canRemoveStock(self, qty): 
         return self.quantity >= qty
+        
