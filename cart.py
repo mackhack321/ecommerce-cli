@@ -20,3 +20,15 @@ class Cart:
         cursor.close()
         db.close()
         return success
+
+    def removeItem(self, userID, movieID):
+        ...
+
+    def checkout(self, user, inventory):
+        ...
+
+    def getCart(self, userID):
+        ...
+    
+    def getTotalCost(self, userID):
+        ...
