@@ -1,4 +1,5 @@
 from dbOpenConn import openDBConnection
+from datetime import date
 
 class User:
     def __init__(self):
@@ -133,6 +134,25 @@ class User:
         db.close()
 
         return hist
+
+    def addOrderToHistory(self, movieID, quantity):
+        success = True
+        db = openDBConnection()
+        cursor = db.cursor(dictionary=True)
+
+        query = "INSERT INTO order_history (userID, movieID, quantity, date) VALUES (%s, %s, %s, %s)"
+        data = (self.userID, movieID, quantity, date.today().strftime("%m/%d/%Y"))
+
+        try:
+            cursor.execute(query, data)
+            db.commit()
+        except:
+            success = False
+        
+        cursor.close()
+        db.close()
+
+        return success
     
     def login(self, username, password):
         db = openDBConnection()
