@@ -35,4 +35,17 @@ class Inventory:
 
     
     def update(self):
-        ...
+        self.items = []
+
+        db = openDBConnection()
+        cursor = db.cursor(dictionary=True)
+
+        query = "SELECT * FROM movies"
+
+        cursor.execute(query)
+
+        for result in cursor.fetchall():
+            self.items.append(Movie(id=result['movieID'], title=result['title'], genre=result['genre'], directory=result['director'], rating=result['rating'], year=result['year'], price=result['price'], quantity=result['quantity']))
+
+        cursor.close()
+        db.close()
