@@ -14,3 +14,11 @@ class Cart:
 
         query = "INSERT INTO cart(userID, movieID, quantity) VALUES (%s, %s, %s,)"
         data = (self.userID, movieID, qty, date.today().strftime("%m/%d/%Y"))
+        try:
+            cursor.execute(query, data)
+            db.commit()
+        except:
+            success = False
+        cursor.close()
+        db.close()
+        return success
