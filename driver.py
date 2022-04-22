@@ -3,6 +3,7 @@ from inventory import Inventory
 
 def driver():
     user = User()
+    inv = Inventory()
     choice = "0"
     while choice != "x":
         if not user.isLoggedIn:
@@ -42,6 +43,7 @@ def driver():
             print("|| 1. Manage shipping information ||")
             print("|| 2. Manage payment information  ||")
             print("|| 3. View order history          ||")
+            print("|| 4. View inventory              ||")
             print("|| L. Logout                      ||")
             print("|| D. Delete account              ||")
             print("|| X. Exit                        ||")
@@ -121,6 +123,13 @@ def driver():
                 else:
                     for entry in hist:
                         print(f"Title: {entry['title']}\nQuantity: {entry['quantity']}\nPrice: {entry['price']}\nDate: {entry['date']}\n")
+
+            if choice == "4":
+                if not inv.items:
+                    print("The inventory is empty")
+                else:
+                    for movie in inv.items:
+                        print(f"ID: {movie.id}\nTitle: {movie.title}\nGenre: {movie.genre}\nDirector: {movie.director}\nRating: {movie.rating}\nYear: {movie.year}\nPrice: {movie.price}\nQuantity: {movie.quantity}")
 
             if choice == "l":
                 print(f"Goodbye, {user.firstname}\n")
