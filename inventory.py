@@ -1,5 +1,5 @@
 from dbOpenConn import openDBConnection
-from item import Item
+from movie import Movie
 
 class Inventory:
     def __init__(self):
@@ -44,7 +44,7 @@ class Inventory:
         cursor.execute(query)
 
         for result in cursor.fetchall():
-            self.items.append(Item(id=result['movieID'],
+            self.items.append(Movie(id=result['movieID'],
             title=result['title'], genre=result['genre'],
             director=result['director'], rating=result['rating'],
             year=result['year'], price=result['price'],
