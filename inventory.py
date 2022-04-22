@@ -1,4 +1,5 @@
 from dbOpenConn import openDBConnection
+from movie import Movie
 
 class Inventory:
     def __init__(self):
@@ -6,11 +7,17 @@ class Inventory:
         self.update()
     
     def removeItemStock(self, id, qty):
-        db = openDBConnection()
-        cursor = db.cursor(dictionary=True)
         success = True
 
-        query = f"UPDATE movies SET quantity=%s WHERE movieID=%s"
+        for item in self.items:
+            if item.id == id and not item.canRemoveStock(qty):
+                success = False
+                return success
+
+        db = openDBConnection()
+        cursor = db.cursor(dictionary=True)
+
+        query = "UPDATE movies SET quantity=quantity-%s WHERE movieID=%s"
         data = (qty, id)
 
         try:
@@ -18,9 +25,11 @@ class Inventory:
             db.commit()
         except:
             success = False
-
+        
         cursor.close()
         db.close()
+
+        self.update()
 
         return success
 
