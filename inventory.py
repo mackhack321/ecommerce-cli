@@ -45,7 +45,7 @@ class Inventory:
         cursor.execute(query)
 
         for result in cursor.fetchall():
-            self.items.append(Movie(id=result['movieID'], title=result['title'], genre=result['genre'], directory=result['director'], rating=result['rating'], year=result['year'], price=result['price'], quantity=result['quantity']))
+            self.items.append(Movie(id=result['movieID'], title=result['title'], genre=result['genre'], director=result['director'], rating=result['rating'], year=result['year'], price=result['price'], quantity=result['quantity']))
 
         cursor.close()
         db.close()
