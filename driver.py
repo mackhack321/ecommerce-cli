@@ -129,7 +129,7 @@ def driver():
                     print("The inventory is empty")
                 else:
                     for movie in inv.items:
-                        print(f"ID: {movie.id}\nTitle: {movie.title}\nGenre: {movie.genre}\nDirector: {movie.director}\nRating: {movie.rating}\nYear: {movie.year}\nPrice: {movie.price}\nQuantity: {movie.quantity}")
+                        print(f"ID: {movie.movieID}\nTitle: {movie.title}\nGenre: {movie.genre}\nDirector: {movie.director}\nRating: {movie.rating}\nYear: {movie.year}\nPrice: {movie.price}\nQuantity: {movie.quantity}\n")
 
             if choice == "l":
                 print(f"Goodbye, {user.firstname}\n")
