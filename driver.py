@@ -28,7 +28,7 @@ def driver():
                 else:
                     print("\nInvalid credentials.\n")
             
-            if choice == "2":
+            elif choice == "2":
                 username = input("Enter username :: ")
                 password = input("Enter password :: ")
                 firstname = input("Enter first name :: ")
@@ -77,7 +77,7 @@ def driver():
                         print(f"State: {info[0]['state']}")
                         print(f"Zip Code: {info[0]['zip']}\n")
                 
-                if choice == "2":
+                elif choice == "2":
                     address = input("Enter address :: ")
                     pobox = input("Enter PO box (\"none\" for no PO box) :: ")
                     city = input("Enter city :: ")
@@ -89,7 +89,7 @@ def driver():
                     else:
                         print("There was an error during shipping information setting\n")
 
-            if choice == "2":
+            elif choice == "2":
                 print("==========[ eCommerce CLI ]=========")
                 print("|| 1. View payment information    ||")
                 print("|| 2. Set payment information     ||")
@@ -109,7 +109,7 @@ def driver():
                         print(f"Zip Code: {info[0]['zip']}")
                         print(f"Security Code: {info[0]['securityCode']}\n")
 
-                if choice == "2":
+                elif choice == "2":
                     cardNumber = input("Enter card number :: ")
                     expirationDate = input("Enter expiration date (MM/YY) :: ")
                     zip = input("Enter zip code :: ")
@@ -120,7 +120,7 @@ def driver():
                     else:
                         print("There was an error during payment information setting\n")
 
-            if choice == "3":
+            elif choice == "3":
                 hist = user.getOrderHistory()
                 if not hist:
                     print("You have no order history\n")
@@ -128,14 +128,14 @@ def driver():
                     for entry in hist:
                         print(f"Title: {entry['title']}\nQuantity: {entry['quantity']}\nPrice: {entry['price']}\nDate: {entry['date']}\n")
 
-            if choice == "4":
+            elif choice == "4":
                 if not inv.items:
                     print("The inventory is empty")
                 else:
                     for movie in inv.items:
                         print(f"ID: {movie.movieID}\nTitle: {movie.title}\nGenre: {movie.genre}\nDirector: {movie.director}\nRating: {movie.rating}\nYear: {movie.year}\nPrice: {movie.price}\nQuantity: {movie.quantity}\n")
 
-            if choice == "5":
+            elif choice == "5":
                 print("==========[ eCommerce CLI ]=========")
                 print("|| 1. View cart                   ||")
                 print("|| 2. Add item to cart            ||")
@@ -155,14 +155,14 @@ def driver():
                         formattedTotal = "{:.2f}".format(cart.getCost(user.userID))
                         print(f"\nTotal price: ${formattedTotal}")
                         print()
-                if choice == "2":
+                elif choice == "2":
                     id = input("Enter movie ID :: ")
                     qty = input("Enter quantity :: ")
                     if cart.addItem(user.userID, id, qty):
                         print("Items added to the cart\n")
                     else: 
                         print("Failed to add to cart\n")
-                if choice == "3":
+                elif choice == "3":
                     id = input("Enter movie ID :: ")
 
                     if cart.removeItem(user.userID, id):
@@ -170,7 +170,7 @@ def driver():
                     else: 
                         print("Failed to remove from cart\n")
             
-            if choice == "6":
+            elif choice == "6":
                 if not cart.getCart(user.userID):
                     print("Your cannot checkout with an empty cart\n")
                 else: 
@@ -179,11 +179,11 @@ def driver():
                     else: 
                         print("Failed to checkout. Are you trying to buy more movies that are in stock?\n")
 
-            if choice == "l":
+            elif choice == "l":
                 print(f"Goodbye, {user.firstname}\n")
                 user.logout()
 
-            if choice == "d":
+            elif choice == "d":
                 sure = input("Are you sure? (y/n) :: ").lower()
                 if sure == "y":
                     if user.delete():
