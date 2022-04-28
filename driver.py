@@ -1,9 +1,11 @@
 from user import User
 from inventory import Inventory
+from cart import Cart
 
 def driver():
     user = User()
     inv = Inventory()
+    cart = Cart()
     choice = "0"
     while choice != "x":
         if not user.isLoggedIn:
@@ -44,6 +46,8 @@ def driver():
             print("|| 2. Manage payment information  ||")
             print("|| 3. View order history          ||")
             print("|| 4. View inventory              ||")
+            print("|| 5. Manage cart                 ||")
+            print("|| 6. Checkout                    ||")
             print("|| L. Logout                      ||")
             print("|| D. Delete account              ||")
             print("|| X. Exit                        ||")
@@ -130,6 +134,23 @@ def driver():
                 else:
                     for movie in inv.items:
                         print(f"ID: {movie.movieID}\nTitle: {movie.title}\nGenre: {movie.genre}\nDirector: {movie.director}\nRating: {movie.rating}\nYear: {movie.year}\nPrice: {movie.price}\nQuantity: {movie.quantity}\n")
+
+            if choice == "5":
+                print("==========[ eCommerce CLI ]=========")
+                print("|| 1. View cart                   ||")
+                print("|| 2. Add item to cart            ||")
+                print("|| 3. Remove item from cart       ||")
+                print("|| 4. Go back                     ||")
+                print("====================================\n")
+
+                choice = input("Enter your choice :: ").lower()
+                print()
+
+                if choice == "1":
+                    ...
+            
+            if choice == "6":
+                ...
 
             if choice == "l":
                 print(f"Goodbye, {user.firstname}\n")
