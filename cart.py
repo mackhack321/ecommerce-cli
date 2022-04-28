@@ -10,12 +10,11 @@ class Cart:
         db = openDBConnection()
         cursor = db.cursor(dictionary=True)
 
-        query = "INSERT INTO cart(userID, movieID, quantity) VALUES (%s, %s, %s,)"
-        data = (userID, movieID, qty,)
+        query = "INSERT INTO cart(userID, movieID, quantity) VALUES (%s, %s, %s)"
+        data = (userID, movieID, qty)
         try:
             cursor.execute(query, data)
             db.commit()
-            print(cursor.rowcount, "Items were inserted")
         except:
             success = False
         cursor.close()
@@ -27,7 +26,7 @@ class Cart:
         db = openDBConnection()
         cursor = db.cursor(dictionary=True)
 
-        query = "DELETE FROM Customer WEHERE userID = %s AND movieID = %s"
+        query = "DELETE FROM cart WEHERE userID = %s AND movieID = %s"
         data = (userID, movieID)
         try:
             cursor.execute(query, data)
@@ -35,7 +34,6 @@ class Cart:
         except:
             success = False 
         if cursor.rowcount == 0:
-            print ('nothing was deleted')
             success = False 
         cursor.close()
         db.close()
@@ -76,12 +74,13 @@ class Cart:
         data = cursor.fetchall()
         dataList = []
         for entry in data: 
-            query = "SELECT * FROM cart where movieID = %s"
+            query = "SELECT * FROM movies where movieID = %s"
             data = (entry['movieID'], )
             cursor.execute(query, data)
             movie = cursor.fetchall()
             dataList.append({"movieID: ": entry['movieID'], "title: ": movie[0]['title'], "quantity: ": entry['quantity']})
         cursor.close()
+        db.close()
         return dataList
     
     def getCost(self, userID):
@@ -94,12 +93,12 @@ class Cart:
         Total = 0.0
         
         for entry in data: 
-            query = "SELECT * FROM cart WHERE movieID = %s"
+            query = "SELECT * FROM movies WHERE movieID = %s"
             data = (entry['movieID'], )
             cursor.execute(query, data)
 
             movie = cursor.fetchall()
-            totalprice += float(movie[0]['price']) * int (entry['quantity'])
+            Total += float(movie[0]['price']) * int(entry['quantity'])
         cursor.close()
         db.close()
         return Total
