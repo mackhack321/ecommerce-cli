@@ -145,12 +145,39 @@ def driver():
 
                 choice = input("Enter your choice :: ").lower()
                 print()
-
                 if choice == "1":
-                    ...
+                    items = cart.getCart(user.UserID)
+                    if not items: 
+                        print ("Cart is empty/n")
+                    else: 
+                        for item in items: 
+                            print (f"ID: {item['movieID']} | Title: {item['title']} | Quantity: {item['quantity']}")
+                        formattedTotal = "{:.2f}".format(cart.getCost(user.userID))
+                        print(f"\nTotal price: ${formattedTotal}")
+                        print()
+                if choice == "2":
+                    id = input("Enter movie ID :: ")
+                    qty = input("Enter quantity ::")
+                    if cart.addItem(user.userID, id, qty):
+                        print("Items added to the cart")
+                    else: 
+                        print("Failed to add to cart\n")
+                if choice == "3":
+                    id = input("Enter movie ID ::")
+
+                    if cart.removeItem(user.userID, id):
+                        print("Successfully removed from cxart\n")
+                    else: 
+                        print("Failed to remove from cart\n")
             
             if choice == "6":
-                ...
+                if not cart.getCart(user.userID):
+                    print("Your cannot checkout with an empty cart\n")
+                else: 
+                    if cart.checkout(user, inv):
+                        print("Successfully check out\n")
+                    else: 
+                        print("Failed to checkout. Are you trying to buy more movies that are in stock?\n")
 
             if choice == "l":
                 print(f"Goodbye, {user.firstname}\n")
