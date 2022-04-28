@@ -29,7 +29,7 @@ class User:
         
         else: # just update the existing info
             query = f"UPDATE shipping_info SET address=%s, pobox=%s, city=%s, state=%s, zip=%s WHERE userID=%s"
-            data = (address, pobox, str(self.userID))
+            data = (address, pobox, city, state, zip, str(self.userID))
 
             try:
                 cursor.execute(query, data)
