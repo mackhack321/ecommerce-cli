@@ -26,7 +26,7 @@ class Cart:
         db = openDBConnection()
         cursor = db.cursor(dictionary=True)
 
-        query = "DELETE FROM cart WEHERE userID = %s AND movieID = %s"
+        query = "DELETE FROM cart WHERE userID=%s AND movieID=%s"
         data = (userID, movieID)
         try:
             cursor.execute(query, data)
@@ -67,7 +67,7 @@ class Cart:
     
     def getCart(self, userID):
         db = openDBConnection()
-        cursor = db.curosr(dictionary=True)
+        cursor = db.cursor(dictionary=True)
         query = "SELECT * FROM cart WHERE userID = %s"
         data = (userID, )
         cursor.execute(query, data)
@@ -78,14 +78,14 @@ class Cart:
             data = (entry['movieID'], )
             cursor.execute(query, data)
             movie = cursor.fetchall()
-            dataList.append({"movieID: ": entry['movieID'], "title: ": movie[0]['title'], "quantity: ": entry['quantity']})
+            dataList.append({"movieID": entry['movieID'], "title": movie[0]['title'], "quantity": entry['quantity']})
         cursor.close()
         db.close()
         return dataList
     
     def getCost(self, userID):
         db = openDBConnection()
-        cursor = db.cursor(dictoionary=True)
+        cursor = db.cursor(dictionary=True)
         query = "SELECT * FROM cart WHERE userID = %s"
         data = (userID, )
         cursor.execute(query, data)

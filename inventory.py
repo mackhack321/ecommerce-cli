@@ -10,7 +10,7 @@ class Inventory:
         success = True
 
         for item in self.items:
-            if item.id == id and not item.canRemoveStock(qty):
+            if item.movieID == id and not item.canRemoveStock(qty):
                 success = False
                 return success
 
